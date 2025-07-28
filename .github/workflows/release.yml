@@ -4,6 +4,10 @@ on:
   push:
     tags:
       - "v*"
+  workflow_dispatch:
+  release:
+    types: [published]
+    
 env:
   MACOS_APP_ARTIFACT: "ThinkpadAssistant.app"
   MACOS_DMG_ARTIFACT: "ThinkpadAssistant.dmg"
