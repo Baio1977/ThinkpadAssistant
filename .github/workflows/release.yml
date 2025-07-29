@@ -4,10 +4,6 @@ on:
   push:
     tags:
       - "v*"
-  workflow_dispatch:
-  release:
-    types: [published]
-    
 env:
   MACOS_APP_ARTIFACT: "ThinkpadAssistant.app"
   MACOS_DMG_ARTIFACT: "ThinkpadAssistant.dmg"
@@ -15,11 +11,11 @@ env:
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: macos-10.15
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
         with:
           fetch-depth: 0
 
@@ -33,6 +29,7 @@ jobs:
 
       # Import Certificates for sign
       - name: Import Code-Signing Certificates
+        id: import_certs
         uses: Apple-Actions/import-codesign-certs@v5.0.2
         with:
           p12-file-base64: ${{ secrets.CERTIFICATES_P12 }}
