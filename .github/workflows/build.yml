@@ -5,16 +5,13 @@ on:
   push:
     branches-ignore:
       - master
-  workflow_dispatch:
-  release:
-    types: [published]
-    
+
 jobs:
   CI:
-    runs-on: macos-13
+    runs-on: macos-10.15
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.2.2
 
       - name: Prepare Env
         run: |
