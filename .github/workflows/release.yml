@@ -69,9 +69,8 @@ jobs:
           echo '### The latest changes are:' >> ReleaseNotes.md
           git log --oneline $(git describe --tags --abbrev=0 HEAD^)..HEAD | sed '/^$/d' >> ReleaseNotes.md
 
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1.1.4
+      - name: Create a Release in a GitHub Action
+        uses: comnoco/create-release-action@v2.0.5
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         with:
@@ -81,9 +80,8 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload Release Assets
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1.0.2
+      - name: GH Release
+        uses: softprops/action-gh-release@v2.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.MY_TOKEN }}
         with:
